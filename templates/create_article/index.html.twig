@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CreateArticleController!{% endblock %}
+
+{% block body %}
+<style>
+@import "~bootstrap/scss/bootstrap";
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+     body {background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(5,27,79,1) 0%, rgba(7,41,102,1) 55%, rgba(5,27,79,1) 89%);} 
+ 
+</style>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous"> 
+
+{{ form_start(createArticleForm) }}
+<div class="card" style="width: 500px; margin : auto; margin-top : 180px; background : #ffffff73;backdrop-filter : blur(5px);">
+<h1 style = "text-align : center; margin-bottom : 40px;">Creer un article ✅</h1>
+    <div class="mb-3">
+        {# <textarea name = "article-text" class="form-control" placeholder = "Write here" rows="10" id="article-text" rows="3"></textarea> #}
+         {{ form_widget(createArticleForm.article, {'attr': {'class': 'form-control'}}) }} 
+</div>
+
+        <button type="submit" class="btn btn-primary" style = "width : 497.5px; height : 50px; text-align : center; margin-top : 20px; ">Creer l'article</button>
+       
+{{ form_end(createArticleForm) }}
+{% endblock %}

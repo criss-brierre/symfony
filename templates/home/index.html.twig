@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper-center {  margin-top:65px;  }
+    body {background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(5,27,79,1) 0%, rgba(7,41,102,1) 55%, rgba(5,27,79,1) 89%);} 
+</style>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
+{% for Article in Articles %}
+<div class="card example-wrapper-center"> 
+  <div class="card-header">
+  {{Article.date|date('Y-m-d') }}
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">
+{{Article.id_Users.username}}</h5>
+    <p class="card-text">{{Article.article}}</p>
+    <a href="/article/id={{Article.id}}" class="btn btn-primary">Voir l'article</a>
+  </div>
+</div>
+{% endfor %}
+
+<nav aria-label="Page navigation example" style = "margin-top : 20px;">
+  <ul class="pagination" style = "margin : auto;">
+  {% for Counts in Count %}
+    <li class="page-item"><a class="page-link" href="?page={{Counts}}">{{Counts}}</a></li>
+    {% endfor %}
+  </ul>
+</nav>
+
+{% endblock %}

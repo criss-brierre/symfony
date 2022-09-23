@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ArticleController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    body {background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(5,27,79,1) 0%, rgba(7,41,102,1) 55%, rgba(5,27,79,1) 89%);} 
+</style>
+
+<div class="jumbotron" style =" margin : auto; margin-top : 180px; background : #ffffff73;backdrop-filter : blur(5px);">
+  <h1 class="display-4"style ="text-align:center;">{{Article.Id_Users.username}}</h1>
+  <p class="lead"style ="text-align:center;">{{Article.article}}</p>
+  Publication : {{Article.date|date('d-m-Y') }}
+ {{ form_start(AddCommentType) }}
+  <p class="lead">
+  <form  method="post">
+  {{ form_widget(AddCommentType.commentaire, {'attr': {'class': 'form-control'}}) }} 
+   <button type="submit" class="btn btn-primary" style = "width : 497.5px; height : 50px; text-align : center; margin-top : 20px; ">Publier</button>
+   <hr class="my-4">
+   {{ form_end(AddCommentType) }}
+
+{% for Comment in Comments %}
+<div class="card" style = "margin-bottom : 20px;">
+  <div class="card-header">
+  {{Comment.Id_Users.username}}
+  </div>
+  
+  <div class="card-body" style = "margin : auto; ">
+    <blockquote class="blockquote mb-0">
+      <p>{{Comment.commentaire}}</p>
+  </div>
+  <div class="card-footer text-muted">
+    {{Article.date|date('d-m-Y')}}
+  </div>
+  </div>
+  {% endfor %}
+<nav aria-label="Page navigation example" style = "margin-top : 20px;">
+  <ul class="pagination" style = "margin : auto;">
+  {% for Counts in Count %}
+    <li class="page-item"><a class="page-link" href="?page={{Counts}}">{{Counts}}</a></li>
+    {% endfor %}
+  </ul>
+</nav>
+
+</div>
+{% endblock %}
